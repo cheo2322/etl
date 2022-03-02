@@ -2,3 +2,5 @@
 /src/main/resources/default.trace.db
 /build/
 /.idea/
+/AverageSalaries.csv
+/META-INF/MANIFEST.MF
