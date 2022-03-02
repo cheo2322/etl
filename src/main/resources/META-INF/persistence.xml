@@ -5,11 +5,15 @@
   version="2.2">
   <persistence-unit name="default">
 
-    <class>entity.Department</class>
-    <class>entity.Employee</class>
+    <class>com.example.etl.entity.AllStarFull</class>
+    <class>com.example.etl.entity.Salary</class>
+    <class>com.example.etl.entity.Fielding</class>
+    <class>com.example.etl.entity.Pitching</class>
+    <class>com.example.etl.entity.HallOfFame</class>
     <properties>
-      <property name="hibernate.connection.url" value="jdbc:h2:.\src\main\resources\default"/>
-      <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="hibernate.connection.url"
+        value="jdbc:h2:.\src\main\resources\default"/>
+      <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
       <property name="hibernate.connection.user" value="sa"/>
       <property name="hibernate.connection.password" value=""/>
       <property name="hibernate.show_sql" value="true"/>
