@@ -1,0 +1,3 @@
+2022-03-01 19:19:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ALLSTARFULL" not found (candidates are: "AllstarFull"); SQL statement:
+select * from allstarfull [42103-210]
