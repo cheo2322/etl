@@ -3,9 +3,13 @@ package com.example.etl.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import lombok.Getter;
 import lombok.Setter;
 
+@NamedNativeQuery(name = "getFielders",
+    query = "SELECT * FROM \"Fielding\"",
+    resultClass = Fielding.class)
 @Getter
 @Setter
 @Entity

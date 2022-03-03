@@ -8,16 +8,8 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@NamedNativeQuery(name = "Salary.getFieldingSalaries",
-    query = "SELECT DISTINCT * FROM \"Fielding\" "
-        + "INNER JOIN \"Salaries\" "
-        + "WHERE \"Salaries\".\"yearID\"=\"Fielding\".\"yearID\" "
-        + "AND \"Salaries\".\"playerID\"=\"Fielding\".\"playerID\"",
-    resultClass = Salary.class)
-@NamedNativeQuery(name = "Salary.getPitchingSalaries",
-    query = "SELECT DISTINCT * FROM \"Pitching\" "
-        + "INNER JOIN \"Salaries\" "
-        + "WHERE \"Salaries\".\"yearID\"=\"Pitching\".\"yearID\" AND \"Salaries\".\"playerID\"=\"Pitching\".\"playerID\"",
+@NamedNativeQuery(name = "selectSalary",
+    query = "SELECT * FROM \"Salaries\"",
     resultClass = Salary.class)
 @Getter
 @Setter

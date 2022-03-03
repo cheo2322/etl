@@ -1,11 +1,14 @@
 package com.example.etl.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import lombok.Getter;
 import lombok.Setter;
 
+@NamedNativeQuery(name = "selectPitchers",
+    query = "SELECT * FROM \"Pitching\"",
+    resultClass = Pitching.class)
 @Setter
 @Getter
 @Entity
@@ -13,58 +16,33 @@ public class Pitching {
 
   @Id
   private String playerID;
-  private Integer yearID;
-  private Integer stint;
+  private int yearID;
+  private int stint;
   private String teamID;
   private String lgID;
-  @Column(name = "W")
-  private Integer wins;
-  @Column(name = "L")
-  private Integer losses;
-  @Column(name = "G")
-  private Integer games;
-  @Column(name = "GS")
-  private Integer gamesStarted;
-  @Column(name = "CG")
-  private Integer completeGames;
-  @Column(name = "SHO")
-  private Integer shutouts;
-  @Column(name = "SV")
-  private Integer saves;
-  @Column(name = "IPouts")
-  private Integer outsPitched;
-  @Column(name = "H")
-  private Integer hits;
-  @Column(name = "ER")
-  private Integer earnedRuns;
-  @Column(name = "HR")
-  private Integer homeRuns;
-  @Column(name = "BB")
-  private Integer walks;
-  @Column(name = "SO")
-  private Integer strikeouts;
-  @Column(name = "BAOpp")
-  private Integer opponentsBattingAverage;
-  @Column(name = "ERA")
-  private Integer earnedRunAverage;
-  @Column(name = "IBB")
-  private Integer intentionalWalks;
-  @Column(name = "WP")
-  private Integer wildPitches;
-  @Column(name = "HBP")
-  private Integer hitByPitch;
-  @Column(name = "BK")
-  private Integer balks;
-  @Column(name = "BFP")
-  private Integer facedByPitcher;
-  @Column(name = "GF")
-  private Integer gamesFinished;
-  @Column(name = "R")
-  private Integer runsAllowed;
-  @Column(name = "SH")
-  private Integer sacrifices;
-  @Column(name = "SF")
-  private Integer sacrificeFlies;
-  @Column(name = "GIDP")
-  private Integer groundedDoublePlay;
+  private int W;
+  private int L;
+  private int G;
+  private int GS;
+  private int CG;
+  private int SHO;
+  private int SV;
+  private int IPouts;
+  private int H;
+  private int ER;
+  private int HR;
+  private int BB;
+  private int SO;
+  private String BAOpp;
+  private double ERA;
+  private String IBB;
+  private String WP;
+  private String HBP;
+  private int BK;
+  private String BFP;
+  private String GF;
+  private int R;
+  private String SH;
+  private String SF;
+  private String GIDP;
 }
