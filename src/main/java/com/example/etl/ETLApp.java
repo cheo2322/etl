@@ -50,7 +50,7 @@ public class ETLApp {
         newList.add(list.getValue().stream().mapToDouble(value -> value).average().orElse(0.0));
         salaries.put(list.getKey(), newList);
 
-        writer.writeNext(new String[]{list.getKey().toString(), Arrays.toString(newList.toArray())});
+        writer.writeNext(new String[]{list.getKey().toString(), newList.get(0).toString(), newList.get(1).toString()});
       }
 
       writer.close();
