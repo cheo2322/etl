@@ -3,6 +3,9 @@ package com.example.etl;
 import com.example.etl.entity.Fielding;
 import com.example.etl.entity.Pitching;
 import com.example.etl.entity.Salary;
+import com.opencsv.CSVWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,14 +32,14 @@ public class ETLApp {
       List<Fielding> fielders = getFielders(entityManager);
       List<Pitching> pitchers = getPitchers(entityManager);
 
-      Map<Integer, Double> averageSalaryByYear = getAverageSalaryByYear(
+      Map<Integer, Double> fieldersSalaries = getAverageSalaryByYear(
           getFieldingSalariesByYear(salaryList, fielders));
-      Map<Integer, Double> averageSalaryByYear1 = getAverageSalaryByYear(
+      Map<Integer, Double> pitchersSalaries = getAverageSalaryByYear(
           getPitchingSalariesByYear(salaryList, pitchers));
 
+      writeCSV(fieldersSalaries, pitchersSalaries);
+
       transaction.commit();
-//    } catch (IOException e) {
-//      e.printStackTrace();
     } finally {
       if (transaction.isActive()) {
         transaction.rollback();
@@ -47,13 +50,25 @@ public class ETLApp {
     }
   }
 
-//  private Map<Integer, List<Double>> mergeMaps(Map<Integer, Double> map1,
-//      Map<Integer, Double> map2) {
-//
-//    Map<Integer, List<Double>> result = new TreeMap<>();
-//
-//
-//  }
+  private static void writeCSV(Map<Integer, Double> map1, Map<Integer, Double> map2) {
+
+    String[] title = {"Year", "Fielding", "Pitchers"};
+    String name = "AverageSalaries.csv";
+
+    try {
+      CSVWriter writer = new CSVWriter(new FileWriter(name));
+      writer.writeNext(title);
+
+      for (Map.Entry<Integer, Double> entry : map1.entrySet()) {
+        writer.writeNext(new String[]{String.valueOf(entry.getKey()),
+            String.valueOf(entry.getValue()), String.valueOf(map2.get(entry.getKey()))});
+      }
+
+      writer.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   private static List<Salary> getSalaries(EntityManager entityManager) {
     TypedQuery<Salary> salaryTypedQuery = entityManager.createNamedQuery("selectSalary",
